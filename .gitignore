@@ -1,0 +1,22 @@
+#Ignore Eclipse project files
+target/
+bin/
+.metadata
+.settings
+.project
+.classpath
+.springBeans
+test-output
+test-output-rerun
+*.log
+/tests/aut
+/tests/libs
+/tests/local.properties
+/tests/*.xml
+!pom.xml
+!descriptor.xml
+
+#Ignore Intellij project files
+.idea/
+*.iml
+*.iws
