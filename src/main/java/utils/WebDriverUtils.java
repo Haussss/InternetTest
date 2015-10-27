@@ -11,4 +11,17 @@ public class WebDriverUtils {
         return !elementList.isEmpty();
     }
 
+    public static void check(WebElement checkbox) {
+        setCheckBoxTo(checkbox,true);
+
+    }
+
+    public static void uncheck(WebElement checkbox) {
+        setCheckBoxTo(checkbox, false);
+    }
+    private static void setCheckBoxTo(WebElement checkbox, boolean value){
+        if(checkbox.isSelected()!= value){}
+        checkbox.click();
+
+    }
 }

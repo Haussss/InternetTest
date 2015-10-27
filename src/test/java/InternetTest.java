@@ -9,7 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import services.AuthService;
+import utils.WebDriverUtils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class InternetTest {
@@ -108,4 +110,14 @@ public class InternetTest {
 
     }
 
+
+ @Test
+    public void checkBoxTest(){
+        driver.findElement(By.linkText("Checkboxes")).click();
+        List<WebElement> checkboxes = driver.findElements(By.cssSelector("input[type='checkbox']"));
+        WebDriverUtils.check(checkboxes.get(0));
+        WebDriverUtils.uncheck(checkboxes.get(1));
+        Assert.assertTrue(checkboxes.get(0).isSelected());
+        Assert.assertFalse(checkboxes.get(1).isSelected());
+    }
 }
