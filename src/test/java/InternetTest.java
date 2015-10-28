@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -120,4 +121,18 @@ public class InternetTest {
         Assert.assertTrue(checkboxes.get(0).isSelected());
         Assert.assertFalse(checkboxes.get(1).isSelected());
     }
+
+    @Test
+    public void dropDownTest(){
+        driver.findElement(By.linkText("Dropdown")).click();
+        WebElement select = driver.findElement(By.id("dropdown"));
+        Select dropdown = new Select(select);
+        List<WebElement> options = dropdown.getOptions();
+        Assert.assertEquals(options.size(), 3);
+        Assert.assertFalse(dropdown.isMultiple());
+        //Assert.assertEquals(options.);
+
+    }
+
+
 }
