@@ -1,8 +1,7 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 import java.util.List;
 
 public class WebDriverUtils {
@@ -22,6 +21,18 @@ public class WebDriverUtils {
     private static void setCheckBoxTo(WebElement checkbox, boolean value){
         if(checkbox.isSelected()!= value){}
         checkbox.click();
+
+    }
+    public static boolean isAlertPresent(WebDriver driver){
+
+        try {
+            driver.switchTo().alert();
+            return true;
+        }
+        catch (NoAlertPresentException ex){
+            return false;
+        }
+
 
     }
 }
