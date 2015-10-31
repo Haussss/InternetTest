@@ -84,10 +84,10 @@ public class ActionsTest {
     Actions action = new Actions(driver);
     List<WebElement> hoverLists = driver.findElements(By.cssSelector(".figure"));
 int counter = 1;
-    for (int i = 0; i < hoverLists.size(); i++) {
-        action.moveToElement(hoverLists.get(i)).click().perform();
-        Assert.assertTrue(hoverLists.get(i).findElement(By.tagName("h5")).isDisplayed());
-        Assert.assertEquals(hoverLists.get(i).findElement(By.tagName("h5")).getText(),"name: user" + counter);
+    for (WebElement hoverList : hoverLists) {
+        action.moveToElement(hoverList).click().perform();
+        Assert.assertTrue(hoverList.findElement(By.tagName("h5")).isDisplayed());
+        Assert.assertEquals(hoverList.findElement(By.tagName("h5")).getText(), "name: user" + counter);
         counter++;
     }
 
@@ -210,23 +210,21 @@ public void alertTest() throws InterruptedException {
         driver.manage().window().setSize(new Dimension(600,400));
         driver.findElement(By.linkText("Frames")).click();
         driver.findElement(By.linkText("iFrame")).click();
-        driver.findElement(By.id("mceu_10"));
-        action.click().perform();
         driver.switchTo().frame("mce_0_ifr");
-   //     WebElement iframetxt = driver.findElement(By.tagName("br"));
- //       iframetxt.click();
-
-
-        action.click()
-                .sendKeys("AAA \n")
+        driver.findElement(By.id("tinymce")).click();
+        action
+                .sendKeys("AAA")
                 .sendKeys(Keys.ENTER)
-                .sendKeys("BBB \n")
+                .sendKeys("BBB")
                 .sendKeys(Keys.ENTER)
-                .sendKeys("CCC \n")
+                .sendKeys("CCC")
                 .sendKeys(Keys.ENTER)
                 .perform();
-
+        action.keyDown(Keys.CONTROL).sendKeys("a").build().perform();
+        driver.switchTo().defaultContent();
+        driver.findElement(By.id("mceu_10")).click();
         Thread.sleep(5000);
+        Assert.assertEquals(driver.findElement(By.id("mceu_29")).getText().trim(),"ol » li");
        // ((JavascriptExecutor)driver).executeScript("");
     }
 
